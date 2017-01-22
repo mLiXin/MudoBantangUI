@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--外部用CoordinatorLayout，本来以为会用到Behavior的，后来发现想太多了。-->
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true">
 
+    <!--AppBarLayout就是占据一个toolbar的位置，CollapsingToolbarLayout是官方封装好的收缩顶部的viewGroup，FrameLayout的子类-->
+    <!--CollapsingToolbarLayout会在滑动收缩顶部的时候，自动给toolbar留一个位置，根据需求，直接在这个布局里面加两个toolbar的自定义布局-->
         <android.support.design.widget.AppBarLayout
             android:id="@+id/appbarlayout"
             android:background="@android:color/transparent"
@@ -18,14 +21,14 @@
             app:contentScrim="@android:color/white"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
-                <!--↓ 这里改成viewpager即可-->
+                <!--↓ banner-->
             <com.mudo.halfcandydemo.ImageCycleView
                 android:id="@+id/banner"
                 android:visibility="visible"
                 android:layout_width="match_parent"
                 android:layout_height="200dp" />
-                <!-- ↑ 这里改成viewpager即可-->
 
+                <!--toobar1，展开的时候显示的toolbar-->
                 <android.support.v7.widget.Toolbar
                     android:id="@+id/toolbar_default"
                     app:layout_collapseMode="pin"
@@ -58,6 +61,7 @@
 
                 </android.support.v7.widget.Toolbar>
 
+            <!--toobar2 收缩的时候显示的toolbar-->
             <android.support.v7.widget.Toolbar
                 android:visibility="gone"
                 android:id="@+id/toolbar_nono"
@@ -92,7 +96,7 @@
 
             </android.support.design.widget.CollapsingToolbarLayout>
 
-
+            <!--tablayout在收缩的时候不会消失，所以这里放在appBarLayout里面，appBarLayout是LinearLayout的子类，所以不影响上面的toolbar-->
             <android.support.design.widget.TabLayout
                 android:id="@+id/tl_main_tabtop"
                 android:layout_width="match_parent"
@@ -101,6 +105,7 @@
                 app:tabSelectedTextColor="@color/colorAccent" />
         </android.support.design.widget.AppBarLayout>
 
+    <!--viewpager外面嵌套一个NestedScrollView，使得这部分布局可以上下滑动，当然viewpager里面是一个fragment，fragment里面就是一个recyclerView-->
         <android.support.v4.widget.NestedScrollView
             android:id="@+id/nestedScrollView"
             android:layout_width="match_parent"

@@ -93,11 +93,12 @@ public class MainActivity extends AppCompatActivity {
         appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
             @Override
             public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+                //通过vertical的偏移值除以totalScrollRange来获取到百分比
                 float progress = (float) (((int) (Math.abs(verticalOffset) / (appBarLayout.getTotalScrollRange()*0.01)))*0.01);
 
                 if (verticalOffset == 0) {
-                    // 展开状态 0
-                    System.out.println("展开状态：" + progress);
+                    // 展开状态 progress为0，展开状态的toolbar可见
+
                     toolbar_default.setVisibility(View.VISIBLE);
                     toolbar_nono.setVisibility(View.GONE);
                     toolbar_default.getBackground().setAlpha(255);
@@ -107,8 +108,8 @@ public class MainActivity extends AppCompatActivity {
                     toolbar_nono.getBackground().setAlpha(255);
 
                 } else if (Math.abs(verticalOffset) >= appBarLayout.getTotalScrollRange()) {
-                    //折叠状态 1
-                    System.out.println("折叠状态：" + progress);
+                    //折叠状态 progress为1，折叠状态的toolbar可见
+
                     toolbar_default.setVisibility(View.GONE);
                     toolbar_nono.setVisibility(View.VISIBLE);
                     toolbar_default.getBackground().setAlpha(255);
@@ -118,16 +119,17 @@ public class MainActivity extends AppCompatActivity {
                     iv_nono_right.getBackground().setAlpha(255);
 
                 } else {
-                    //中间状态
 
-                    if(toolbar_default.getVisibility() == View.VISIBLE){
+                    //中间状态，两个toolbar是重叠在一起的，根据是从折叠到展开，还是从展开到折叠，同时加上进度progress确定两个toolbar的透明比
+
+                    if(toolbar_nono.getVisibility() == View.GONE){// 折叠状态的toolbar不可见，则是从展开到折叠变化
                         flag_defaulttono = true;
-                    }else if(toolbar_nono.getVisibility() == View.VISIBLE){
+                    }else if(toolbar_default.getVisibility() == View.GONE){// 展开状态的toolbar不可见，则是从折叠到展开变化，为什么？因为只有到0的时候可见性才会变成gone，其他都是可见或改变透明度。
                         flag_defaulttono = false;
-                    }
+                    }// 以上两种情况都不是的话，则不需要改变flag_defaluttono的值
 
                     toolbar_default.setVisibility(View.VISIBLE);
-                    toolbar_nono.setVisibility(View.VISIBLE);
+                    toolbar_nono.setVisibility(View.VISIBLE);//
 
                     if(flag_defaulttono){ // 0到1变换
                         toolbar_default.getBackground().setAlpha((int) ((1-progress) * 255));
