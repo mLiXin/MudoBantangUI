@@ -11,12 +11,18 @@ def verCode = 14
 android {
     //渠道Flavors
     productFlavors {
-        xiaomi {
-            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "xiaomi"]
-        }
-        wandoujia {
-            manifestPlaceholders = [UMENG_CHANNEL_VALUE:    "wandoujia"]
-        }
+        default_channel{}
+        wandoujia{}
+        _360{}
+        yingyongbao{}
+        xiaomi{}
+        baidu{}
+        huawei{}
+        jifeng{}
+    }
+
+    productFlavors.all { flavor ->
+        flavor.manifestPlaceholders = [ UMENG_CHANNEL_VALUE:name ]
     }
 
     compileSdkVersion 25
