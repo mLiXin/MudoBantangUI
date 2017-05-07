@@ -64,7 +64,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void initView() {
         // 第三方banner
-
         ImageCycleView banner = (ImageCycleView) findViewById(R.id.banner);
         ArrayList<Integer> resArray = new ArrayList<>();
         resArray.add(R.mipmap.ic_one);
