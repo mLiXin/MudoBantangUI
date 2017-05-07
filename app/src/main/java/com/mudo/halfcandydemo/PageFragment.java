@@ -24,25 +24,25 @@ public class PageFragment extends Fragment {
     private int mPage;
     private String mTitle;
 
-    private Fruit[] fruits = {new Fruit("Apple",R.mipmap.apple),
-            new Fruit("banana",R.mipmap.banana),
-            new Fruit("orange",R.mipmap.orange),
-            new Fruit("watermelon",R.mipmap.watermelon),
-            new Fruit("pear",R.mipmap.pear),
-            new Fruit("grape",R.mipmap.grape),
-            new Fruit("pineapple",R.mipmap.pineapple),
-            new Fruit("strawberry",R.mipmap.strawberry),
-            new Fruit("cherry",R.mipmap.cherry),
-            new Fruit("mango",R.mipmap.mango)
+    private Fruit[] fruits = {new Fruit("Apple", R.mipmap.apple),
+            new Fruit("banana", R.mipmap.banana),
+            new Fruit("orange", R.mipmap.orange),
+            new Fruit("watermelon", R.mipmap.watermelon),
+            new Fruit("pear", R.mipmap.pear),
+            new Fruit("grape", R.mipmap.grape),
+            new Fruit("pineapple", R.mipmap.pineapple),
+            new Fruit("strawberry", R.mipmap.strawberry),
+            new Fruit("cherry", R.mipmap.cherry),
+            new Fruit("mango", R.mipmap.mango)
     };
 
     private List<Fruit> fruitList = new ArrayList<>();
     private FruitAdapter adapter;
 
-    public static PageFragment newInstance(int page,String title){
+    public static PageFragment newInstance(int page, String title) {
         Bundle args = new Bundle();
-        args.putInt("ARG_PAGE",page);
-        args.putString("ARG_TITLE",title);
+        args.putInt("ARG_PAGE", page);
+        args.putString("ARG_TITLE", title);
         PageFragment pageFragment = new PageFragment();
         pageFragment.setArguments(args);
         return pageFragment;
@@ -58,22 +58,22 @@ public class PageFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_page,container,false);
+        View rootView = inflater.inflate(R.layout.fragment_page, container, false);
 
         RecyclerView recycleview = (RecyclerView) rootView.findViewById(R.id.recycleview);
 
         initFruits();
 
-        GridLayoutManager layoutManager = new GridLayoutManager(getActivity(),1);
+        GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 1);
         recycleview.setLayoutManager(layoutManager);
         adapter = new FruitAdapter(fruitList);
         recycleview.setAdapter(adapter);
         return rootView;
     }
 
-    private void initFruits(){
+    private void initFruits() {
         fruitList.clear();
-        for(int i = 0 ; i < 10;i++){
+        for (int i = 0; i < 10; i++) {
             Random random = new Random();
             int index = random.nextInt(fruits.length);
             fruitList.add(fruits[index]);

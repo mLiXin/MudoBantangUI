@@ -11,7 +11,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 public class SimpleFragmetnPagerAdapter extends FragmentPagerAdapter {
 
-    private String tabTitles[] = new String[]{"推荐","最新","热门","礼物","美食","生活","设计感","家居","数码","阅读","学生党","上班族","美妆","护理","运动户外","健康"};
+    private String tabTitles[] = new String[]{"推荐", "最新", "热门", "礼物", "美食", "生活", "设计感", "家居", "数码", "阅读", "学生党", "上班族", "美妆", "护理", "运动户外", "健康"};
     private Context context;
 
     public SimpleFragmetnPagerAdapter(FragmentManager fm, Context context) {
@@ -21,7 +21,7 @@ public class SimpleFragmetnPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        return PageFragment.newInstance(position,tabTitles[position]);
+        return PageFragment.newInstance(position, tabTitles[position]);
     }
 
     @Override

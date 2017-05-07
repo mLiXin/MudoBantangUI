@@ -18,7 +18,7 @@ import java.util.List;
  * Created by MarvelY on 2017/1/5 20:22
  */
 
-public class FruitAdapter extends RecyclerView.Adapter<FruitAdapter.ViewHolder>{
+public class FruitAdapter extends RecyclerView.Adapter<FruitAdapter.ViewHolder> {
 
     private Context mContext;
     private List<Fruit> mFruitList;
@@ -30,10 +30,10 @@ public class FruitAdapter extends RecyclerView.Adapter<FruitAdapter.ViewHolder>{
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        if(mContext == null){
+        if (mContext == null) {
             mContext = parent.getContext();
         }
-        View view = LayoutInflater.from(mContext).inflate(R.layout.item_fruit,parent,false);
+        View view = LayoutInflater.from(mContext).inflate(R.layout.item_fruit, parent, false);
 
         return new ViewHolder(view);
     }
@@ -51,7 +51,7 @@ public class FruitAdapter extends RecyclerView.Adapter<FruitAdapter.ViewHolder>{
         return mFruitList.size();
     }
 
-    static class ViewHolder extends RecyclerView.ViewHolder{
+    static class ViewHolder extends RecyclerView.ViewHolder {
 
         CardView cardView;
         ImageView imageView;
